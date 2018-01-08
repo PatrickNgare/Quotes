@@ -18,10 +18,24 @@ export class QuoteComponent implements OnInit {
     new Quote(5, "Francis of Assisi", "Lord, make me an instrument of thy peace. Where there is hatred, let me sow love.", new Date(2015.4, 4)),
     new Quote(6, "A. P. J. Abdul Kalam", "Let us sacrifice our today so that our children can have a better tomorrow.", new Date(2016.7, 8))
   ]
-
-  constructor() { }
-
-  ngOnInit() {
+  deleteQuote(isComplete,index){
+    if (isComplete){
+      let toDelete=confirm('Are you sure you want to delete quote')
+      if(toDelete){
+        this.quotes.splice(index,1)
+      }
+    }
   }
 
+    addNewQuote(quote){
+        let quoteLength = this.quotes.length;
+        quote.id=quoteLength+1;
+        quote.completeDate = new Date(quote.completeDate)
+        this.quotes.push(quote)
+
+    }
+    constructor() { }
+
+    ngOnInit() {
+    }
 }
